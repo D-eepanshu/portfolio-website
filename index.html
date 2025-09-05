@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepanshu Kumar - Personal Portfolio</title>
+    <meta name="description" content="Software Engineer specializing in C++, Java, Machine Learning, and NLP. Building scalable applications with clean code and intelligent solutions.">
+    <meta name="keywords" content="Software Engineer, Machine Learning, NLP, C++, Java, Portfolio">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --accent-primary: #6366F1;
+            --accent-secondary: #A5B4FC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(100, 116, 139, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .social-icon:hover {
+            color: var(--accent-primary);
+            transform: scale(1.2);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent-primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--bg-primary);
+            border: 4px solid var(--accent-primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            position: relative;
+        }
+
+        .bg-grid-slate-800\/\[0\.2\] {
+            background-image: linear-gradient(rgba(30, 41, 59, 0.2) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(30, 41, 59, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .loader {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--text-secondary);
+            border-top: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .gemini-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .header-blur {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .mobile-menu-open {
+            max-height: 400px;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-menu-closed {
+            max-height: 0;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .contact-form {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-input {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #10B981;
+        }
+
+        .notification.error {
+            background: #EF4444;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid var(--accent-primary);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--accent-primary) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="#" class="text-2xl font-bold">
+                    <span class="gradient-text">Deepanshu Kumar</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="hover:text-indigo-400 transition-colors nav-link">About</a>
+                    <a href="#expertise" class="hover:text-indigo-400 transition-colors nav-link">Expertise</a>
+                    <a href="#skills" class="hover:text-indigo-400 transition-colors nav-link">Skills</a>
+                    <a href="#projects" class="hover:text-indigo-400 transition-colors nav-link">Projects</a>
+                    <a href="#experience" class="hover:text-indigo-400 transition-colors nav-link">Experience</a>
+                    <a href="#education" class="hover:text-indigo-400 transition-colors nav-link">Education</a>
+                    <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors nav-link">Contact Me</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-slate-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/90 backdrop-blur-sm overflow-hidden mobile-menu-closed">
+            <a href="#about" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">About</a>
+            <a href="#expertise" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">Expertise</a>
+            <a href="#skills" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">Skills</a>
+            <a href="#projects" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">Projects</a>
+            <a href="#experience" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">Experience</a>
+            <a href="#education" class="block py-3 px-4 text-center hover:bg-slate-800 transition-colors nav-link">Education</a>
+            <a href="#contact" class="block py-4 px-4 text-center bg-indigo-600 text-white font-medium nav-link">Contact Me</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden">
+            <div class="absolute inset-0 bg-grid-slate-800/[0.2] [mask-image:linear-gradient(to_bottom,white_0%,transparent_100%)]"></div>
+            <div class="container mx-auto px-4 z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="text-center md:text-left">
+                        <span class="text-indigo-400 font-semibold typing-effect">Hello, I'm</span>
+                        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight my-2">
+                            Deepanshu Kumar
+                        </h1>
+                        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
+                            <span class="gradient-text">Software Engineer</span>
+                        </h2>
+                        <p class="text-lg text-slate-400 mb-8 max-w-xl mx-auto md:mx-0">I build beautiful, responsive, and high-performance applications, with a passion for clean code and intelligent solutions.</p>
+                        
+                        <!-- Social Media Icons -->
+                        <div class="flex justify-center md:justify-start space-x-5 mt-8">
+                            <a href="https://www.linkedin.com/in/deepanshu-kumar-7368b1214" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="LinkedIn">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="https://github.com/D-eepanshu" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="GitHub">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/_deepanshu_keshri_17" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="Instagram">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.148-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.947s-.014-3.667-.072-4.947c-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                            </a>
+                            <a href="https://leetcode.com/u/DEEP_ANSH/" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="LeetCode">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+                            </a>
+                            <a href="https://www.hackerrank.com/profile/keshrideepanshu1" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="HackerRank">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12S0 18.623 0 12 5.377 0 12 0zm2.557 16.001c-.604 0-1.009-.435-1.009-.435L12 13.713l-1.548 1.853s-.405.435-1.009.435c-.604 0-1.092-.653-.489-1.307l1.548-1.853-1.548-1.853c-.603-.654-.115-1.307.489-1.307.604 0 1.009.435 1.009.435L12 10.287l1.548-1.853s.405-.435 1.009-.435c.604 0 1.092.653.489 1.307L13.498 11.16l1.548 1.853c.603.654.115 1.307-.489 1.307z"/></svg>
+                            </a>
+                            <a href="https://www.geeksforgeeks.org/user/keshrideepanshu53/" target="_blank" rel="noopener noreferrer" class="text-slate-400 social-icon transition-all" aria-label="GeeksforGeeks">
+                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M21.45 14.315c-.143.28-.334.532-.565.745a3.691 3.691 0 0 1-1.104.565 4.677 4.677 0 0 1-1.343.19 4.572 4.572 0 0 1-1.64-.297 3.91 3.91 0 0 1-1.304-.823 3.712 3.712 0 0 1-.823-1.24 4.172 4.172 0 0 1-.297-1.577V8.1a4.172 4.172 0 0 1 .297-1.577 3.712 3.712 0 0 1 .823-1.24 3.91 3.91 0 0 1 1.304-.823 4.572 4.572 0 0 1 1.64-.297 4.677 4.677 0 0 1 1.343.19 3.691 3.691 0 0 1 1.104.565c.231.213.422.465.565.745.152.297.237.618.252.942a2.221 2.221 0 0 1-.19.942 1.906 1.906 0 0 1-.565.725 2.191 2.191 0 0 1-.836.434 3.901 3.901 0 0 1-1.01.297c-.334.053-.677.053-1.01 0l-.297-.046v-.297c0-.116.023-.232.07-.34a1.123 1.123 0 0 1 .19-.297c.098-.092.213-.168.34-.225.127-.058.268-.087.41-.087.227 0 .447-.023.661-.07.213-.047.407-.141.573-.28a1.462 1.462 0 0 0 .403-.463 1.293 1.293 0 0 0 .143-.661 1.235 1.235 0 0 0-.143-.565 1.46 1.46 0 0 0-.403-.463 2.147 2.147 0 0 0-.573-.28 2.438 2.438 0 0 0-.661-.07 1.767 1.767 0 0 0-.725.143 1.68 1.68 0 0 0-.565.41 1.928 1.928 0 0 0-.365.606 2.307 2.307 0 0 0-.13.745v3.826a2.307 2.307 0 0 0 .13.745 1.928 1.928 0 0 0 .365.606c.159.175.348.315.565.41.22.1.459.149.725.143.227 0 .447.023.661.07.213.047.407.141.573.28a1.462 1.462 0 0 1 .403.463 1.235 1.235 0 0 1 .143.565 1.293 1.293 0 0 1-.143.661 1.46 1.46 0 0 1-.403.463c-.166.139-.36.233-.573.28-.214.047-.434.07-.661.07-.142 0-.283-.029-.41-.087a1.123 1.123 0 0 1-.34-.225 1.906 1.906 0 0 1-.19-.297 1.374 1.374 0 0 1-.07-.34v-.297l.297.046c.333.053.676.053 1.01 0 .354-.06.694-.162 1.01-.297.317-.135.607-.318.836-.434a1.906 1.906 0 0 0 .565-.725 2.221 2.221 0 0 0 .19-.942 2.221 2.221 0 0 0-.252-.942Z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="relative flex items-center justify-center">
+                        <div class="absolute w-72 h-72 md:w-96 md:h-96 bg-indigo-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+                        <img src="https://placehold.co/400x400/0A0A0A/E2E8F0?text=DK" alt="Deepanshu Kumar" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover relative z-10 border-4 border-slate-700 hover:border-indigo-500 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Me Section -->
+        <section id="about" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                     <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">About Me</h2>
+                </div>
+                <div class="max-w-3xl mx-auto text-lg text-slate-300 text-center leading-relaxed scroll-reveal">
+                    <p id="bio-text">Goal-oriented Software Engineer proficient in C++, Java, and SQL with strong expertise in Data Structures & Algorithms, and OOP. Skilled in Machine Learning, NLP, and scalable application development, delivering innovative and efficient solutions.</p>
+                </div>
+                <div class="text-center mt-8 scroll-reveal">
+                    <button id="generate-bio-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition-transform hover:scale-105 gemini-btn">
+                        <span id="bio-btn-text">✨ Refine Bio with AI</span>
+                        <span id="bio-loader" class="loader hidden"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">My Expertise</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto scroll-reveal">Crafting solutions through code and delivering value across the technology stack.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Expertise Card 1 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal text-center flex flex-col">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Software Development</h3>
+                        <p class="text-slate-400 flex-grow">Building scalable and efficient applications with a strong foundation in data structures, algorithms, and object-oriented principles.</p>
+                        <button class="generate-question-btn mt-6 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors gemini-btn justify-center">
+                            <span>✨ Generate Interview Question</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                    <!-- Expertise Card 2 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal text-center flex flex-col" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Machine Learning & NLP</h3>
+                        <p class="text-slate-400 flex-grow">Developing intelligent systems that can learn from data, recognize patterns, and understand natural language to solve real-world problems.</p>
+                        <button class="generate-question-btn mt-6 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors gemini-btn justify-center">
+                           <span>✨ Generate Interview Question</span>
+                           <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                    <!-- Expertise Card 3 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal text-center flex flex-col" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Data Analytics & Visualization</h3>
+                        <p class="text-slate-400 flex-grow">Transforming raw data into actionable insights through analysis and creating intuitive dashboards to drive informed decision-making.</p>
+                        <button class="generate-question-btn mt-6 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors gemini-btn justify-center">
+                            <span>✨ Generate Interview Question</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">Technical Skill Dashboard</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto scroll-reveal">A look at the technologies, languages, and tools I use to bring ideas to life.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="skills-container">
+                    <!-- Skill Card 1 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Programming & Problem-Solving</h3>
+                        <p class="text-slate-400">C++ (DSA, OOP), Java, Python, C, SQL, Algorithm Design and Optimization.</p>
+                    </div>
+                    <!-- Skill Card 2 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Machine Learning & Analytics</h3>
+                        <p class="text-slate-400">scikit-learn, TensorFlow, OpenCV, NumPy, Pandas, Matplotlib, Power BI.</p>
+                    </div>
+                    <!-- Skill Card 3 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Development Tools & Platforms</h3>
+                        <p class="text-slate-400">Git/GitHub, Google Colab, VS Code, MySQL, Excel, PowerPoint.</p>
+                    </div>
+                     <!-- Skill Card 4 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal" style="transition-delay: 300ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Core Computer Science</h3>
+                        <p class="text-slate-400">Computer Networks, Operating Systems, System Design Basics.</p>
+                    </div>
+                     <!-- Skill Card 5 -->
+                    <div class="glass-card p-8 rounded-xl scroll-reveal" style="transition-delay: 400ms;">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-400">Additional Skills</h3>
+                        <p class="text-slate-400">Prompt Engineering, Leadership, Team Collaboration, Communication, Time Management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">My Projects</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto scroll-reveal">A selection of my work. Want a new idea? Let AI help!</p>
+                </div>
+                 <div class="text-center mb-12 scroll-reveal">
+                    <button id="generate-project-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 px-6 rounded-lg transition-transform hover:scale-105 gemini-btn">
+                         <span id="project-btn-text">✨ Suggest a Project Idea</span>
+                         <span id="project-loader" class="loader hidden"></span>
+                    </button>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="block rounded-xl overflow-hidden group scroll-reveal cursor-pointer project-card" data-title="TrieSense - Autocomplete System" data-description="Engineered a Trie-based autocomplete engine with efficient prefix search, achieving 95%+ accuracy in real-time predictions. Built with Java and Swing for GUI interface." data-tech="Java, Swing, DSA, Trie Data Structure" data-github="#">
+                        <img src="https://placehold.co/600x400/1E1B4B/A5B4FC?text=TrieSense" alt="TrieSense Project" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-bold mb-2">TrieSense - Autocomplete System</h3>
+                            <p class="text-slate-400 mb-4">Engineered a Trie-based autocomplete engine with efficient prefix search, achieving 95%+ accuracy in real-time predictions.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Java</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Swing</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">DSA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="block rounded-xl overflow-hidden group scroll-reveal cursor-pointer project-card" style="transition-delay: 100ms;" data-title="VANI - NLP Voice Assistant" data-description="Built a voice assistant to handle emails, Wikipedia search, and YouTube control, integrating speech recognition and intent detection. Developed using Python with Tkinter for UI." data-tech="Python, Tkinter, scikit-learn, NLP" data-github="#">
+                        <img src="https://placehold.co/600x400/1E1B4B/A5B4FC?text=VANI+Assistant" alt="VANI Voice Assistant" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-bold mb-2">VANI - NLP Voice Assistant</h3>
+                            <p class="text-slate-400 mb-4">Built a voice assistant to handle emails, Wikipedia search, and YouTube control, integrating speech recognition and intent detection.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">Tkinter</span>
+                                <span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">scikit-learn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">Experience</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto scroll-reveal">My professional journey and background.</p>
+                </div>
+                <div class="max-w-3xl mx-auto scroll-reveal">
+                    <div class="glass-card p-8 rounded-xl text-center">
+                         <p class="text-xl italic text-slate-300">"Contributed to backend development, improving functionality and efficiency of core modules. Assisted in database management and optimization to support scalable operations."</p>
+                        <div class="mt-6">
+                            <div class="font-bold text-lg">Intern Associate</div>
+                            <div class="text-indigo-400">Youevolve, Rijuvalika Technologies</div>
+                            <div class="text-slate-500 mt-1">Jan 2024 - Mar 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold scroll-reveal">Education & Career Path</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto scroll-reveal">My academic background and AI-powered career advice.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-container left scroll-reveal">
+                        <div class="timeline-content glass-card">
+                            <h3 class="text-xl font-bold text-indigo-400">Master of Computer Application</h3>
+                            <p class="text-slate-300 my-1">Graphic Era (Deemed to be University)</p>
+                            <p class="text-slate-500 text-sm">August 2024 - Present | Dehradun, India</p>
+                        </div>
+                    </div>
+                    <div class="timeline-container right scroll-reveal">
+                        <div class="timeline-content glass-card">
+                             <h3 class="text-xl font-bold text-indigo-400">Bachelor of Computer Application</h3>
+                            <p class="text-slate-300 my-1">Sarala Birla University</p>
+                            <p class="text-slate-500 text-sm">November 2021 - June 2024 | Ranchi, India</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12 scroll-reveal">
+                    <button id="generate-career-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition-transform hover:scale-105 gemini-btn">
+                        <span id="career-btn-text">✨ Get AI Career Advice</span>
+                        <span id="career-loader" class="loader hidden"></span>
+                    </button>
+                    <div id="career-advice-output" class="mt-8 max-w-3xl mx-auto text-left hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-indigo-600 rounded-xl text-center p-12 scroll-reveal">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Let's Connect</h2>
+                        <p class="text-indigo-200 mt-4 mb-8 max-w-2xl mx-auto">Have a project in mind or just want to say hi? Feel free to reach out. I'd love to hear from you!</p>
+                        <div class="flex flex-wrap justify-center gap-4 mb-8">
+                            <a href="mailto:keshrideepanshu53@gmail.com" class="bg-white text-indigo-600 hover:bg-slate-200 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 inline-flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                Send Email
+                            </a>
+                            <a href="tel:+919546737717" class="bg-white text-indigo-600 hover:bg-slate-200 font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 inline-flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                                Call Me
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-form scroll-reveal">
+                        <h3 class="text-2xl font-bold text-center mb-6">Or Send a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                                    <input type="text" id="name" name="name" required class="form-input" placeholder="Your Name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                    <input type="email" id="email" name="email" required class="form-input" placeholder="your.email@example.com">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-slate-300 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" required class="form-input" placeholder="Project Inquiry / Collaboration / Hello">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="form-input" placeholder="Tell me about your project or just say hi!"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg transition-transform hover:scale-105 inline-flex items-center gap-2">
+                                    <span id="submit-text">Send Message</span>
+                                    <span id="submit-loader" class="loader hidden"></span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- AI Modal (for Project Ideas & Interview Questions) -->
+    <div id="ai-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card rounded-xl p-8 max-w-2xl w-full relative max-h-[80vh] overflow-y-auto">
+             <button id="close-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modal-content" class="text-center">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card rounded-xl p-8 max-w-3xl w-full relative max-h-[80vh] overflow-y-auto">
+            <button id="close-project-modal-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="project-modal-content">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification hidden"></div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900/50">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+                <p class="text-slate-400">&copy; 2025 Deepanshu Kumar. All rights reserved.</p>
+                 <div class="flex items-center space-x-4">
+                    <a href="https://www.linkedin.com/in/deepanshu-kumar-7368b1214" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition-colors">LinkedIn</a>
+                    <a href="https://github.com/D-eepanshu" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition-colors">GitHub</a>
+                    <a href="https://www.instagram.com/_deepanshu_keshri_17" class="text-slate-400 hover:text-indigo-400 transition-colors">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Utility functions
+        const utils = {
+            debounce: (func, wait) => {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            },
+            
+            throttle: (func, limit) => {
+                let inThrottle;
+                return function() {
+                    const args = arguments;
+                    const context = this;
+                    if (!inThrottle) {
+                        func.apply(context, args);
+                        inThrottle = true;
+                        setTimeout(() => inThrottle = false, limit);
+                    }
+                }
+            },
+            
+            showNotification: (message, type = 'success') => {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = `notification ${type} show`;
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            },
+            
+            smoothScroll: (targetId) => {
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        };
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        const handleScroll = utils.throttle(() => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-blur');
+            } else {
+                header.classList.remove('header-blur');
+            }
+        }, 100);
+        
+        window.addEventListener('scroll', handleScroll);
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('mobile-menu-closed')) {
+                mobileMenu.classList.remove('mobile-menu-closed');
+                mobileMenu.classList.add('mobile-menu-open');
+            } else {
+                mobileMenu.classList.remove('mobile-menu-open');
+                mobileMenu.classList.add('mobile-menu-closed');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const targetId = href.substring(1);
+                    utils.smoothScroll(targetId);
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('mobile-menu-open');
+                    mobileMenu.classList.add('mobile-menu-closed');
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', utils.throttle(() => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }, 100));
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const submitText = document.getElementById('submit-text');
+        const submitLoader = document.getElementById('submit-loader');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitText.textContent = 'Sending...';
+            submitLoader.classList.remove('hidden');
+            submitBtn.disabled = true;
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Simulate form submission (replace with actual API call)
+            try {
+                // This would typically be an API call to your backend
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Create mailto link for now
+                const mailtoLink = `mailto:keshrideepanshu53@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
+                window.location.href = mailtoLink;
+                
+                utils.showNotification('Message sent successfully! Opening your email client...', 'success');
+                contactForm.reset();
+            } catch (error) {
+                utils.showNotification('Failed to send message. Please try again.', 'error');
+            } finally {
+                // Reset button state
+                submitText.textContent = 'Send Message';
+                submitLoader.classList.add('hidden');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // AI-powered features (mock implementations)
+        const aiFeatures = {
+            generateBio: async () => {
+                const bioBtn = document.getElementById('generate-bio-btn');
+                const bioText = document.getElementById('bio-text');
+                const btnText = document.getElementById('bio-btn-text');
+                const loader = document.getElementById('bio-loader');
+                
+                btnText.textContent = 'Generating...';
+                loader.classList.remove('hidden');
+                
+                // Mock AI response
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const newBios = [
+                    "Passionate Software Engineer with expertise in C++, Java, and Python, specializing in algorithmic problem-solving and machine learning. Dedicated to creating scalable solutions that bridge the gap between complex data and user-friendly applications.",
+                    "Detail-oriented Software Developer proficient in full-stack technologies and AI/ML frameworks. Experienced in building intelligent systems that leverage natural language processing and data analytics to solve real-world challenges.",
+                    "Innovative Software Engineer combining strong foundations in computer science with cutting-edge machine learning techniques. Committed to developing efficient, scalable applications that drive technological advancement and user experience."
+                ];
+                
+                bioText.textContent = newBios[Math.floor(Math.random() * newBios.length)];
+                
+                btnText.textContent = '✨ Refine Bio with AI';
+                loader.classList.add('hidden');
+                
+                utils.showNotification('Bio updated successfully!', 'success');
+            },
+            
+            generateQuestion: async (expertise) => {
+                const modal = document.getElementById('ai-modal');
+                const modalContent = document.getElementById('modal-content');
+                
+                modal.classList.remove('hidden');
+                modalContent.innerHTML = `
+                    <div class="text-center">
+                        <div class="loader mb-4"></div>
+                        <p>Generating interview question...</p>
+                    </div>
+                `;
+                
+                // Mock AI response
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const questions = {
+                    'Software Development': [
+                        "Explain the difference between a stack and a queue, and provide a real-world scenario where you'd use each data structure.",
+                        "How would you design a system to handle 1 million concurrent users? Walk me through your architecture decisions.",
+                        "Describe a time when you had to optimize a slow-performing algorithm. What was your approach?"
+                    ],
+                    'Machine Learning & NLP': [
+                        "How would you handle imbalanced datasets in a classification problem? Provide specific techniques and their trade-offs.",
+                        "Explain the difference between BERT and GPT models. When would you choose one over the other for an NLP task?",
+                        "Walk me through the process of building a recommendation system from scratch. What algorithms would you consider?"
+                    ],
+                    'Data Analytics & Visualization': [
+                        "How would you identify and handle outliers in a large dataset? What statistical methods would you use?",
+                        "Describe a situation where correlation doesn't imply causation. How would you establish causal relationships?",
+                        "What's your approach to creating effective data visualizations for both technical and non-technical stakeholders?"
+                    ]
+                };
+                
+                const expertiseQuestions = questions[expertise] || questions['Software Development'];
+                const randomQuestion = expertiseQuestions[Math.floor(Math.random() * expertiseQuestions.length)];
+                
+                modalContent.innerHTML = `
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-400">${expertise} Interview Question</h3>
+                        <div class="bg-slate-800/50 p-6 rounded-lg mb-6">
+                            <p class="text-lg text-slate-200">${randomQuestion}</p>
+                        </div>
+                        <div class="text-sm text-slate-400 mb-4">
+                            <p><strong>Tip:</strong> Structure your answer with specific examples and explain your thought process step by step.</p>
+                        </div>
+                        <button onclick="aiFeatures.generateQuestion('${expertise}')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors mr-4">
+                            Generate Another
+                        </button>
+                    </div>
+                `;
+            },
+            
+            generateProject: async () => {
+                const projectBtn = document.getElementById('generate-project-btn');
+                const btnText = document.getElementById('project-btn-text');
+                const loader = document.getElementById('project-loader');
+                const modal = document.getElementById('ai-modal');
+                const modalContent = document.getElementById('modal-content');
+                
+                btnText.textContent = 'Generating...';
+                loader.classList.remove('hidden');
+                
+                // Mock AI response
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const projectIdeas = [
+                    {
+                        title: "Smart Code Review Assistant",
+                        description: "An AI-powered tool that analyzes code for bugs, performance issues, and best practices. Uses machine learning to provide intelligent suggestions and learns from developer feedback.",
+                        technologies: ["Python", "TensorFlow", "Flask", "Git API"],
+                        complexity: "Intermediate"
+                    },
+                    {
+                        title: "Real-time Sentiment Analysis Dashboard",
+                        description: "A web application that monitors social media mentions and news articles for brand sentiment analysis. Features real-time updates and interactive visualizations.",
+                        technologies: ["Python", "React", "NLP", "Twitter API", "D3.js"],
+                        complexity: "Advanced"
+                    },
+                    {
+                        title: "Automated Meeting Summarizer",
+                        description: "A system that joins video calls, transcribes conversations, and generates intelligent meeting summaries with action items using NLP techniques.",
+                        technologies: ["Python", "Speech Recognition", "OpenAI API", "WebRTC"],
+                        complexity: "Advanced"
+                    },
+                    {
+                        title: "Personal Finance Predictor",
+                        description: "A machine learning application that analyzes spending patterns and predicts future expenses, providing budgeting recommendations and financial insights.",
+                        technologies: ["Python", "Pandas", "Scikit-learn", "Streamlit"],
+                        complexity: "Intermediate"
+                    }
+                ];
+                
+                const randomProject = projectIdeas[Math.floor(Math.random() * projectIdeas.length)];
+                
+                btnText.textContent = '✨ Suggest a Project Idea';
+                loader.classList.add('hidden');
+                
+                modal.classList.remove('hidden');
+                modalContent.innerHTML = `
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-400">${randomProject.title}</h3>
+                        <div class="text-left mb-6">
+                            <p class="text-slate-300 mb-4">${randomProject.description}</p>
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-slate-200 mb-2">Technologies:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${randomProject.technologies.map(tech => 
+                                        `<span class="bg-indigo-500/20 text-indigo-300 text-xs font-semibold px-2.5 py-1 rounded-full">${tech}</span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <span class="text-sm text-slate-400">Complexity: </span>
+                                <span class="font-semibold text-indigo-400">${randomProject.complexity}</span>
+                            </div>
+                        </div>
+                        <button onclick="aiFeatures.generateProject()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                            Generate Another Idea
+                        </button>
+                    </div>
+                `;
+            },
+            
+            generateCareerAdvice: async () => {
+                const careerBtn = document.getElementById('generate-career-btn');
+                const btnText = document.getElementById('career-btn-text');
+                const loader = document.getElementById('career-loader');
+                const output = document.getElementById('career-advice-output');
+                
+                btnText.textContent = 'Analyzing...';
+                loader.classList.remove('hidden');
+                
+                // Mock AI response
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                const advice = [
+                    {
+                        title: "Skill Development Roadmap",
+                        content: "Focus on strengthening your system design knowledge and cloud technologies (AWS/GCP). Consider contributing to open-source projects to showcase your skills to potential employers."
+                    },
+                    {
+                        title: "Career Progression",
+                        content: "With your strong foundation in ML/NLP, consider specializing in AI Engineering roles at tech companies. Look for positions at startups where you can wear multiple hats and grow quickly."
+                    },
+                    {
+                        title: "Networking Strategy",
+                        content: "Attend tech meetups and conferences in your area. Build a strong LinkedIn presence by sharing your projects and insights about software development and machine learning trends."
+                    },
+                    {
+                        title: "Interview Preparation",
+                        content: "Practice system design interviews and behavioral questions. Create a portfolio showcasing 3-4 diverse projects that demonstrate your full-stack capabilities and problem-solving skills."
+                    }
+                ];
+                
+                const selectedAdvice = advice[Math.floor(Math.random() * advice.length)];
+                
+                btnText.textContent = '✨ Get AI Career Advice';
+                loader.classList.add('hidden');
+                
+                output.innerHTML = `
+                    <div class="glass-card p-6 rounded-xl">
+                        <h4 class="text-xl font-bold text-indigo-400 mb-3">${selectedAdvice.title}</h4>
+                        <p class="text-slate-300 leading-relaxed">${selectedAdvice.content}</p>
+                        <button onclick="aiFeatures.generateCareerAdvice()" class="mt-4 bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+                            Get More Advice
+                        </button>
+                    </div>
+                `;
+                output.classList.remove('hidden');
+                
+                utils.showNotification('Career advice generated!', 'success');
+            }
+        };
+
+        // Event listeners for AI features
+        document.getElementById('generate-bio-btn').addEventListener('click', aiFeatures.generateBio);
+        document.getElementById('generate-project-btn').addEventListener('click', aiFeatures.generateProject);
+        document.getElementById('generate-career-btn').addEventListener('click', aiFeatures.generateCareerAdvice);
+
+        // Interview question generators
+        document.querySelectorAll('.generate-question-btn').forEach((btn, index) => {
+            const expertiseAreas = ['Software Development', 'Machine Learning & NLP', 'Data Analytics & Visualization'];
+            btn.addEventListener('click', () => {
+                aiFeatures.generateQuestion(expertiseAreas[index]);
+            });
+        });
+
+        // Modal controls
+        document.getElementById('close-modal-btn').addEventListener('click', () => {
+            document.getElementById('ai-modal').classList.add('hidden');
+        });
+
+        document.getElementById('close-project-modal-btn').addEventListener('click', () => {
+            document.getElementById('project-modal').classList.add('hidden');
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('ai-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'ai-modal') {
+                document.getElementById('ai-modal').classList.add('hidden');
+            }
+        });
+
+        document.getElementById('project-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'project-modal') {
+                document.getElementById('project-modal').classList.add('hidden');
+            }
+        });
+
+        // Project card interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.dataset.title;
+                const description = card.dataset.description;
+                const tech = card.dataset.tech;
+                const github = card.dataset.github;
+                
+                const modal = document.getElementById('project-modal');
+                const modalContent = document.getElementById('project-modal-content');
+                
+                modalContent.innerHTML = `
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-400">${title}</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">${description}</p>
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-slate-200 mb-3">Technologies Used:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${tech.split(', ').map(t => 
+                                    `<span class="bg-indigo-500/20 text-indigo-300 text-sm font-semibold px-3 py-1 rounded-full">${t}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            ${github !== '#' ? `<a href="${github}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors inline-flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path></svg>
+                                View on GitHub
+                            </a>` : ''}
+                            <button class="bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg transition-colors inline-flex items-center gap-2" onclick="utils.showNotification('Demo not available for this project', 'error')">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                Live Demo
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                modal.classList.remove('hidden');
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Close modals with Escape key
+            if (e.key === 'Escape') {
+                document.getElementById('ai-modal').classList.add('hidden');
+                document.getElementById('project-modal').classList.add('hidden');
+            }
+            
+            // Quick navigation with Ctrl/Cmd + number keys
+            if ((e.ctrlKey || e.metaKey) && e.key >= '1' && e.key <= '6') {
+                e.preventDefault();
+                const sections = ['about', 'expertise', 'skills', 'projects', 'experience', 'education'];
+                const sectionIndex = parseInt(e.key) - 1;
+                if (sections[sectionIndex]) {
+                    utils.smoothScroll(sections[sectionIndex]);
+                }
+            }
+        });
+
+        // Performance optimization: Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Add some Easter eggs for fun
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.length === konamiSequence.length && 
+                konamiCode.every((code, index) => code === konamiSequence[index])) {
+                utils.showNotification('🎉 Konami Code activated! You found the Easter egg!', 'success');
+                document.body.style.transform = 'rotate(360deg)';
+                document.body.style.transition = 'transform 2s ease-in-out';
+                setTimeout(() => {
+                    document.body.style.transform = '';
+                    document.body.style.transition = '';
+                }, 2000);
+                konamiCode = [];
+            }
+        });
+
+        // Initialize all features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Portfolio loaded successfully! 🚀');
+            
+            // Add some loading animations
+            setTimeout(() => {
+                document.querySelectorAll('.scroll-reveal').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('revealed');
+                    }, index * 100);
+                });
+            }, 500);
+        });
+
+        // Export utilities for global access (useful for debugging)
+        window.portfolioUtils = utils;
+        window.aiFeatures = aiFeatures;
+    </script>
+</body>
+</html>
